@@ -6,71 +6,69 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=flat-square)](https://www.typescriptlang.org/)
 [![MCP](https://img.shields.io/badge/MCP-1.0.4-green?style=flat-square)](https://modelcontextprotocol.io/)
 
-中文 | [English](./README.en.md)
+[中文](./README.zh.md) | English
 
-这是一个基于 [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) 的服务器，用于封装 Knowfun.io 的 OpenAPI，让 AI 助手（如 Claude）能够直接调用 Knowfun 的内容生成能力。
+This is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that wraps the Knowfun.io OpenAPI, allowing AI assistants (like Claude) to directly invoke Knowfun's content generation capabilities.
 
-## 功能特性
+## Features
 
-通过此 MCP server，AI 助手可以：
+Through this MCP server, AI assistants can:
 
-- ✅ 创建内容生成任务（课程、海报、游戏、短剧）
-- ✅ 查询任务状态和详细结果
-- ✅ 获取任务列表（支持分页和筛选）
-- ✅ 查询积分余额和消耗明细
-- ✅ 获取 API 配置 Schema（所有可用的生成选项）
+- ✅ Create content generation tasks (courses, posters, games, films)
+- ✅ Query task status and detailed results
+- ✅ Get task lists (with pagination and filtering)
+- ✅ Query credit balance and usage details
+- ✅ Get API configuration schema (all available generation options)
 
-## 安装
+## Installation
 
 ```bash
-# 克隆或进入项目目录
+# Clone or navigate to project directory
 cd knowfun-mcp
 
-# 安装依赖
+# Install dependencies
 npm install
 
-# 编译 TypeScript
+# Compile TypeScript
 npm run build
 ```
 
-## 配置
+## Configuration
 
-1. 复制环境变量模板：
+1. Copy environment variable template:
 ```bash
 cp .env.example .env
 ```
 
-2. 编辑 `.env` 文件，填入您的 Knowfun API Key：
+2. Edit `.env` file and fill in your Knowfun API Key:
 ```bash
 KNOWFUN_API_KEY=kf_your_api_key_here
 KNOWFUN_API_BASE_URL=https://api.knowfun.io
 ```
 
-> 💡 如何获取 API Key？
-> 1. 登录 [knowfun.io](https://knowfun.io)
-> 2. 进入 `/api-platform` 页面
-> 3. 创建或查看您的 API Key
+> 💡 How to get API Key?
+> 1. Login to [knowfun.io](https://knowfun.io)
+> 2. Go to `/api-platform` page
+> 3. Create or view your API Key
 
-3. 测试连接（可选但推荐）：
+3. Test connection (optional but recommended):
 ```bash
 npm test
 ```
 
-如果配置正确，会显示：
-- ✅ API Key 有效
-- ✅ 网络连接正常
-- ✅ 当前积分余额
+If configured correctly, it will show:
+- ✅ API Key valid
+- ✅ Network connection normal
+- ✅ Current credit balance
 
-## 使用配置
+## Use in Claude Desktop
 
-### 在 Claude Desktop 中使用
-
-编辑 Claude Desktop 的配置文件：
+Edit Claude Desktop configuration file:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-添加以下配置：
+Add the following configuration:
 
 ```json
 {
@@ -87,32 +85,11 @@ npm test
 }
 ```
 
-重启 Claude Desktop 后，即可使用 Knowfun 工具。
+Restart Claude Desktop to use Knowfun tools.
 
-### 在 Claude Code (CLI) 中使用
+## Use in Claude Code (CLI)
 
-编辑或创建 `~/.config/claude/settings.json`：
-
-```json
-{
-  "mcpServers": {
-    "knowfun": {
-      "command": "node",
-      "args": ["/Users/jamson/code/knowfun-mcp/dist/index.js"],
-      "env": {
-        "KNOWFUN_API_KEY": "kf_your_api_key_here",
-        "KNOWFUN_API_BASE_URL": "https://api.knowfun.io"
-      }
-    }
-  }
-}
-```
-
-然后正常使用 Claude Code CLI 即可。
-
-### 在 Cursor 中使用
-
-在项目根目录创建 `.cursor/mcp_config.json`：
+Create or edit `~/.config/claude/settings.json`:
 
 ```json
 {
@@ -129,39 +106,58 @@ npm test
 }
 ```
 
-或在 Cursor 设置中配置（Settings → Features → MCP）。
+Then use Claude Code CLI as normal.
 
-> 📖 查看 [CONFIGURATION.md](./CONFIGURATION.md) 获取详细配置指南
+## Use in Cursor
 
-## 可用工具
+Create `.cursor/mcp_config.json` in your project:
+
+```json
+{
+  "mcpServers": {
+    "knowfun": {
+      "command": "node",
+      "args": ["/Users/jamson/code/knowfun-mcp/dist/index.js"],
+      "env": {
+        "KNOWFUN_API_KEY": "kf_your_api_key_here",
+        "KNOWFUN_API_BASE_URL": "https://api.knowfun.io"
+      }
+    }
+  }
+}
+```
+
+Or configure in Cursor settings (Settings → Features → MCP).
+
+## Available Tools
 
 ### 1. create_task
-创建内容生成任务（API: `POST /api/openapi/v1/tasks`）
+Create content generation task (API: `POST /api/openapi/v1/tasks`)
 
-**参数**：
-- `requestId` (string, 必需): 自定义请求ID（1-64字符）
-- `taskType` (string, 必需): 任务类型 - `course`（课程）, `poster`（海报）, `game`（游戏）, `film`（短剧）
-- `material` (object, 必需): 输入素材
-  - `text` (string): 文本内容
-  - `url` (string): 文档或网页URL
-  - `type` (string): 素材类型（text, url, pdf, doc等）
-- `config` (object): 生成配置（可选，建议先调用 `get_schema` 查看可用配置）
-- `callbackUrl` (string): 完成回调URL（可选）
-- `language` (string): 语言设置（可选）
+**Parameters**:
+- `requestId` (string, required): Custom request ID (1-64 characters)
+- `taskType` (string, required): Task type - `course`, `poster`, `game`, `film`
+- `material` (object, required): Input material
+  - `text` (string): Text content
+  - `url` (string): Document or webpage URL
+  - `type` (string): Material type (text, url, pdf, doc, etc.)
+- `config` (object): Generation config (optional, call `get_schema` first to see available options)
+- `callbackUrl` (string): Callback URL on completion (optional)
+- `language` (string): Language setting (optional)
 
-**示例**：
+**Example**:
 ```json
 {
   "requestId": "req-20260301-001",
   "taskType": "course",
   "material": {
-    "text": "人工智能简介：AI是计算机科学的一个分支...",
+    "text": "Introduction to AI: AI is a branch of computer science...",
     "type": "text"
   },
   "config": {
     "course": {
-      "contentLanguage": "zh",
-      "explainLanguage": "zh",
+      "contentLanguage": "en",
+      "explainLanguage": "en",
       "aspectRatio": "landscape"
     }
   }
@@ -169,143 +165,143 @@ npm test
 ```
 
 ### 2. get_task
-根据 taskId 查询任务状态（API: `GET /api/openapi/v1/tasks/:taskId`）
+Query task status by taskId (API: `GET /api/openapi/v1/tasks/:taskId`)
 
-**参数**：
-- `taskId` (string, 必需): 任务ID
+**Parameters**:
+- `taskId` (string, required): Task ID
 
 ### 3. get_task_by_request_id
-根据 requestId 查询任务状态（API: `GET /api/openapi/v1/tasks/by-request/:requestId`）
+Query task status by requestId (API: `GET /api/openapi/v1/tasks/by-request/:requestId`)
 
-**参数**：
-- `requestId` (string, 必需): 请求ID
+**Parameters**:
+- `requestId` (string, required): Request ID
 
 ### 4. get_task_detail
-获取任务详细信息（API: `GET /api/openapi/v1/tasks/:taskId/detail`）
+Get detailed task information (API: `GET /api/openapi/v1/tasks/:taskId/detail`)
 
-**参数**：
-- `taskId` (string, 必需): 任务ID
-- `verbose` (boolean): 是否返回详细调试信息（默认 false）
+**Parameters**:
+- `taskId` (string, required): Task ID
+- `verbose` (boolean): Return detailed debug info (default false)
 
 ### 5. list_tasks
-获取任务列表（API: `GET /api/openapi/v1/tasks`）
+Get task list (API: `GET /api/openapi/v1/tasks`)
 
-**参数**：
-- `page` (number): 页码（默认 1）
-- `limit` (number): 每页数量（默认 20）
-- `status` (string): 状态筛选（pending, processing, success, failed）
-- `taskType` (string): 类型筛选（course, poster, game, film）
+**Parameters**:
+- `page` (number): Page number (default 1)
+- `limit` (number): Items per page (default 20)
+- `status` (string): Status filter (pending, processing, success, failed)
+- `taskType` (string): Type filter (course, poster, game, film)
 
 ### 6. get_credits_balance
-查询当前 API Key 的积分余额（API: `GET /api/openapi/v1/credits/balance`）
+Query current API Key credit balance (API: `GET /api/openapi/v1/credits/balance`)
 
-**返回**：
-- `available`: 可用积分
-- `earned`: 总获得积分
-- `used`: 已使用积分
-- `locked`: 锁定积分
+**Returns**:
+- `available`: Available credits
+- `earned`: Total earned credits
+- `used`: Used credits
+- `locked`: Locked credits
 
 ### 7. get_credits_pricing
-获取各类任务的积分消耗定价（API: `GET /api/openapi/v1/credits/pricing`）
+Get credit pricing for each task type (API: `GET /api/openapi/v1/credits/pricing`)
 
 ### 8. get_schema
-获取 API 配置 Schema（API: `GET /api/openapi/v1/schema`）
+Get API configuration schema (API: `GET /api/openapi/v1/schema`)
 
-包括所有可用的内容风格、模板、语言等选项
+Includes all available content styles, templates, languages, etc.
 
 ### 9. get_usage
-查询积分消耗明细（API: `GET /api/openapi/usage`）
+Query credit usage details (API: `GET /api/openapi/usage`)
 
-**参数**：
-- `startDate` (string): 开始日期（YYYY-MM-DD）
-- `endDate` (string): 结束日期（YYYY-MM-DD）
+**Parameters**:
+- `startDate` (string): Start date (YYYY-MM-DD)
+- `endDate` (string): End date (YYYY-MM-DD)
 
-## 任务类型说明
+## Task Types
 
-### Course（课程）
-生成多媒体课程内容（视频、PPT等）
+### Course
+Generate multimedia course content (video, PPT, etc.)
 
-**主要配置项**：
-- `contentStyle`: 内容风格（concise、detailed等）
-- `contentLanguage`: 内容语言
-- `explainLanguage`: 解说语言
-- `voiceType`: 音色类型
-- `aspectRatio`: 宽高比（landscape、portrait）
+**Main config**:
+- `contentStyle`: Content style (concise, detailed, etc.)
+- `contentLanguage`: Content language
+- `explainLanguage`: Narration language
+- `voiceType`: Voice type
+- `aspectRatio`: Aspect ratio (landscape, portrait)
 
-### Poster（海报）
-生成知识图解海报
+### Poster
+Generate knowledge infographic posters
 
-**主要配置项**：
-- `usage`: 布局类型（infographic、businessReports等）
-- `style`: 美术风格（handDrawn、photorealistic等）
-- `aspectRatio`: 宽高比（1:1、4:3、16:9等）
+**Main config**:
+- `usage`: Layout type (infographic, businessReports, etc.)
+- `style`: Art style (handDrawn, photorealistic, etc.)
+- `aspectRatio`: Aspect ratio (1:1, 4:3, 16:9, etc.)
 
-### Game（游戏）
-生成互动游戏内容
+### Game
+Generate interactive game content
 
-**主要配置项**：
-- `gameType`: 游戏类型（story、interactive、mission等）
-- `aspectRatio`: 宽高比
+**Main config**:
+- `gameType`: Game type (story, interactive, mission, etc.)
+- `aspectRatio`: Aspect ratio
 
-### Film（短剧）
-生成短视频或微电影
+### Film
+Generate short videos or micro-films
 
-**主要配置项**：
-- `filmStyle`: 影片风格（story、documentary、tutorial等）
-- `aspectRatio`: 画面比例（16:9、9:16、1:1）
+**Main config**:
+- `filmStyle`: Film style (story, documentary, tutorial, etc.)
+- `aspectRatio`: Aspect ratio (16:9, 9:16, 1:1)
 
-## 开发
+## Development
 
 ```bash
-# 监听文件变化并自动重新编译
+# Watch file changes and auto-compile
 npm run watch
 
-# 运行开发模式
+# Run in development mode
 npm run dev
 ```
 
-## 技术栈
+## Tech Stack
 
 - **MCP SDK**: @modelcontextprotocol/sdk
-- **HTTP 客户端**: axios
-- **语言**: TypeScript
-- **运行时**: Node.js
+- **HTTP Client**: axios
+- **Language**: TypeScript
+- **Runtime**: Node.js
 
-## 文档
+## Documentation
 
-### 快速开始
-- 🚀 [QUICKSTART.md](./QUICKSTART.md) - 快速入门指南
-- 🚀 [QUICKSTART.en.md](./QUICKSTART.en.md) - Quick Start Guide
+### Quick Start
+- 🚀 [QUICKSTART.md](./QUICKSTART.md) - Quick Start Guide
+- 🚀 [QUICKSTART.zh.md](./QUICKSTART.zh.md) - 快速入门指南
 
-### 完整文档
-- 📖 [README.md](./README.md) - 完整项目文档（中文）
-- 📖 [README.en.md](./README.en.md) - Complete Documentation (English)
-- 📝 [USAGE_EXAMPLES.md](./USAGE_EXAMPLES.md) - 使用示例
-- 📝 [USAGE_EXAMPLES.en.md](./USAGE_EXAMPLES.en.md) - Usage Examples
-- ⚙️ [CONFIGURATION.md](./CONFIGURATION.md) - 详细配置指南（中英文）
+### Complete Documentation
+- 📖 [README.md](./README.md) - Complete Documentation (English)
+- 📖 [README.zh.md](./README.zh.md) - 完整项目文档（中文）
+- 📝 [USAGE_EXAMPLES.md](./USAGE_EXAMPLES.md) - Usage Examples
+- 📝 [USAGE_EXAMPLES.zh.md](./USAGE_EXAMPLES.zh.md) - 使用示例
+- ⚙️ [CONFIGURATION.md](./CONFIGURATION.md) - Configuration Guide (Bilingual)
 
-### 参考资料
-- 📊 [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - 项目结构说明
-- 📋 [CHANGELOG.md](./CHANGELOG.md) - 版本更新记录
+### Reference
+- 📊 [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - Project Structure
+- 📋 [CHANGELOG.md](./CHANGELOG.md) - Version History
 
-### 贡献指南
-- 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - 如何贡献代码
-- 📜 [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) - 社区行为准则
-- 🔒 [SECURITY.md](./SECURITY.md) - 安全政策
+### Contributing
+- 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - How to Contribute
+- 📜 [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) - Code of Conduct
+- 🔒 [SECURITY.md](./SECURITY.md) - Security Policy
 
-## 相关链接
+## Related Links
 
 - [Knowfun.io](https://knowfun.io)
-- [Knowfun OpenAPI 文档](https://knowfun.io/api-platform)
+- [Knowfun OpenAPI Docs](https://knowfun.io/api-platform)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Claude Desktop](https://claude.ai/download)
 - [Claude Code CLI](https://docs.anthropic.com/claude/docs/claude-code)
 - [Cursor](https://cursor.sh)
 
-## 许可证
+## License
 
 MIT
 
-## 支持
+## Support
 
-如有问题或建议，请联系 Knowfun 团队或提交 Issue。
+For issues or suggestions, please contact the Knowfun team or submit an Issue.

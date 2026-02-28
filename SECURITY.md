@@ -202,6 +202,6 @@ Security updates will be released as patch versions (e.g., 1.0.1, 1.0.2) and ann
 
 ## Contact / 联系方式
 
-For security concerns, please contact: security@knowfun.io
+For security concerns, please contact: support@knowfun.io
 
-对于安全问题，请联系：security@knowfun.io
+对于安全问题，请联系：support@knowfun.io

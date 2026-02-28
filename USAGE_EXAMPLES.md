@@ -1,256 +1,260 @@
-# Knowfun MCP 使用示例
+# Knowfun MCP Usage Examples
 
-本文档提供了使用 Knowfun MCP server 的具体示例。
+[中文](./USAGE_EXAMPLES.zh.md) | English
 
-## 前置准备
+This document provides specific examples of using the Knowfun MCP server.
 
-1. 确保已经在 Claude Desktop 中配置好 MCP server
-2. 确保已经设置了有效的 `KNOWFUN_API_KEY`
-3. 重启 Claude Desktop 以加载配置
+## Prerequisites
 
-## 使用示例
+1. Ensure MCP server is configured in Claude Desktop / Claude Code / Cursor
+2. Ensure valid `KNOWFUN_API_KEY` is set
+3. Restart your tool to load configuration
 
-### 1. 查看 API 配置选项
+## Usage Examples
 
-在开始创建任务前，建议先查看可用的配置选项：
+### 1. View API Configuration Options
 
-```
-请帮我查看 Knowfun API 的配置选项
-```
-
-Claude 会调用 `get_schema` 工具，返回所有可用的：
-- 内容风格选项
-- PPT 模板选项
-- 语言选项
-- 音色选项
-- 生成方式等
-
-### 2. 创建课程生成任务
-
-#### 基础示例（使用默认配置）
+Before creating tasks, it's recommended to view available configuration options:
 
 ```
-请使用 Knowfun 创建一个关于"人工智能基础"的课程，内容为：
-人工智能（AI）是计算机科学的一个分支，致力于创建能够模拟人类智能的系统。
-主要包括机器学习、深度学习、自然语言处理等技术。
+Please help me view Knowfun API configuration options
 ```
 
-#### 高级示例（自定义配置）
+Claude will call the `get_schema` tool, returning all available:
+- Content style options
+- PPT template options
+- Language options
+- Voice options
+- Generation methods, etc.
+
+### 2. Create Course Generation Task
+
+#### Basic Example (using default config)
 
 ```
-请使用 Knowfun 创建一个课程：
+Please use Knowfun to create a course about "Introduction to Artificial Intelligence" with content:
+Artificial Intelligence (AI) is a branch of computer science dedicated to creating systems
+that can simulate human intelligence. It mainly includes machine learning, deep learning,
+natural language processing, and other technologies.
+```
+
+#### Advanced Example (custom config)
+
+```
+Please use Knowfun to create a course:
 - requestId: course-ai-intro-001
-- 任务类型：课程（course）
-- 内容：人工智能基础知识介绍
-- 配置：
-  - 内容语言：中文
-  - 解说语言：中文
-  - 宽高比：横屏
-  - 内容风格：简洁明了
+- Task type: course
+- Content: Introduction to artificial intelligence basics
+- Config:
+  - Content language: English
+  - Narration language: English
+  - Aspect ratio: landscape
+  - Content style: concise
 ```
 
-### 3. 创建海报
+### 3. Create Poster
 
 ```
-帮我生成一张关于"区块链技术原理"的知识图解海报：
+Help me generate a knowledge infographic poster about "Blockchain Technology Principles":
 - requestId: poster-blockchain-001
-- 任务类型：海报
-- 内容：区块链是一种分布式账本技术，通过去中心化的方式确保数据安全...
-- 配置：
-  - 布局：知识图解（infographic）
-  - 风格：手绘风（handDrawn）
-  - 宽高比：16:9
+- Task type: poster
+- Content: Blockchain is a distributed ledger technology that ensures data security
+  through decentralization...
+- Config:
+  - Layout: infographic
+  - Style: hand-drawn (handDrawn)
+  - Aspect ratio: 16:9
 ```
 
-### 4. 创建互动游戏
+### 4. Create Interactive Game
 
 ```
-请创建一个互动游戏来学习"太阳系行星"知识：
+Please create an interactive game to learn about "Solar System Planets":
 - requestId: game-solar-system-001
-- 任务类型：游戏
-- 内容：介绍太阳系八大行星的基本特征和位置关系
-- 配置：
-  - 游戏类型：互动演示（interactive）
+- Task type: game
+- Content: Introduce basic characteristics and positions of the eight planets in the solar system
+- Config:
+  - Game type: interactive demonstration (interactive)
 ```
 
-### 5. 创建短剧/微电影
+### 5. Create Short Film/Micro-film
 
 ```
-帮我制作一个关于"牛顿三大定律"的教学短片：
+Help me create a tutorial video about "Newton's Three Laws":
 - requestId: film-newton-laws-001
-- 任务类型：短剧
-- 内容：通过生活实例讲解牛顿第一、第二、第三定律
-- 配置：
-  - 影片风格：教程讲解（tutorial）
-  - 画面比例：16:9
+- Task type: film
+- Content: Explain Newton's first, second, and third laws through real-life examples
+- Config:
+  - Film style: tutorial (tutorial)
+  - Aspect ratio: 16:9
 ```
 
-### 6. 查询任务状态
+### 6. Query Task Status
 
-#### 按 taskId 查询
-
-```
-请帮我查询任务 <taskId> 的状态
-```
-
-#### 按 requestId 查询
+#### Query by taskId
 
 ```
-请查询 requestId 为 "course-ai-intro-001" 的任务状态
+Please help me check the status of task <taskId>
 ```
 
-### 7. 获取任务详细结果
+#### Query by requestId
 
 ```
-请获取任务 <taskId> 的详细结果，包括生成的视频、图片等资源链接
+Please query the status of task with requestId "course-ai-intro-001"
 ```
 
-如需调试信息：
-```
-请获取任务 <taskId> 的详细结果，开启 verbose 模式
-```
-
-### 8. 查看任务列表
-
-#### 查看所有任务
+### 7. Get Detailed Task Results
 
 ```
-请列出我最近创建的所有任务
+Please get detailed results for task <taskId>, including video, image, and other resource links
 ```
 
-#### 按类型筛选
-
+For debug information:
 ```
-请列出我所有的课程生成任务
-```
-
-#### 按状态筛选
-
-```
-请列出所有已成功完成的任务
+Please get detailed results for task <taskId> with verbose mode enabled
 ```
 
-#### 分页查询
+### 8. View Task List
+
+#### View all tasks
 
 ```
-请显示第2页的任务，每页10条
+Please list all my recently created tasks
 ```
 
-### 9. 查询积分信息
-
-#### 查询余额
+#### Filter by type
 
 ```
-请查看我的 Knowfun 积分余额
+Please list all my course generation tasks
 ```
 
-#### 查询定价
+#### Filter by status
 
 ```
-请告诉我各类任务需要消耗多少积分
+Please list all successfully completed tasks
 ```
 
-#### 查询消耗明细
+#### Paginated query
 
 ```
-请查询我最近一个月的积分消耗明细
+Please show page 2 of tasks, 10 items per page
 ```
 
-或指定日期范围：
-```
-请查询我从 2026-02-01 到 2026-02-28 的积分消耗明细
-```
+### 9. Query Credit Information
 
-## 完整工作流示例
-
-### 场景：制作一个完整的教学课程
+#### Query balance
 
 ```
-我想用 Knowfun 制作一个关于"Python 编程入门"的教学课程：
+Please check my Knowfun credit balance
+```
 
-1. 首先，请帮我查看可用的课程配置选项
-2. 然后，使用以下配置创建课程：
+#### Query pricing
+
+```
+Please tell me how many credits each type of task consumes
+```
+
+#### Query usage details
+
+```
+Please query my credit usage details for the past month
+```
+
+Or specify date range:
+```
+Please query my credit usage from 2026-02-01 to 2026-02-28
+```
+
+## Complete Workflow Example
+
+### Scenario: Create a Complete Tutorial Course
+
+```
+I want to use Knowfun to create a tutorial course about "Python Programming Introduction":
+
+1. First, please help me view available course configuration options
+2. Then, create a course using the following config:
    - requestId: python-intro-20260301
-   - 内容：Python 是一种简单易学的编程语言，广泛应用于数据科学、
-     Web 开发等领域。本课程将介绍 Python 的基本语法、数据类型、
-     控制流程和函数定义。
-   - 配置：
-     - 内容语言：中文
-     - 解说语言：中文
-     - 音色：专业男声
-     - 宽高比：横屏
-3. 创建后，每隔30秒帮我查询一次任务状态，直到任务完成
-4. 任务完成后，获取详细结果并展示视频链接
+   - Content: Python is an easy-to-learn programming language widely used in data science,
+     web development, and more. This course introduces Python basics, data types,
+     control flow, and function definitions.
+   - Config:
+     - Content language: English
+     - Narration language: English
+     - Voice: Professional male
+     - Aspect ratio: landscape
+3. After creation, check task status every 30 seconds until task completes
+4. When task completes, get detailed results and show video link
 ```
 
-## 注意事项
+## Notes
 
-1. **requestId 唯一性**：每次创建任务时，requestId 必须是唯一的，建议使用时间戳或 UUID
-2. **积分消耗**：不同类型的任务消耗不同数量的积分，建议先查询定价
-3. **任务状态**：任务创建后会经历以下状态：
-   - `pending` - 等待处理
-   - `processing` - 处理中
-   - `parsing` - 解析中
-   - `generating` - 生成中
-   - `success` - 成功
-   - `failed` - 失败
-4. **轮询间隔**：建议每 30-60 秒查询一次任务状态，避免过于频繁
-5. **配置选项**：不同任务类型有不同的配置选项，使用前建议先调用 `get_schema` 查看
+1. **requestId uniqueness**: requestId must be unique for each task creation, recommend using timestamp or UUID
+2. **Credit consumption**: Different task types consume different amounts of credits, recommend checking pricing first
+3. **Task status**: After creation, tasks go through these statuses:
+   - `pending` - Waiting
+   - `processing` - Processing
+   - `parsing` - Parsing
+   - `generating` - Generating
+   - `success` - Success
+   - `failed` - Failed
+4. **Polling interval**: Recommend querying task status every 30-60 seconds, avoid too frequent polling
+5. **Configuration options**: Different task types have different config options, recommend calling `get_schema` first
 
-## 高级技巧
+## Advanced Tips
 
-### 批量任务管理
-
-```
-请帮我：
-1. 创建3个不同主题的课程任务
-2. 等待所有任务完成
-3. 汇总展示所有任务的结果链接
-```
-
-### 任务监控
+### Batch Task Management
 
 ```
-请持续监控我的任务列表，当有任务完成时通知我
+Please help me:
+1. Create 3 course tasks with different topics
+2. Wait for all tasks to complete
+3. Summarize and show all task result links
 ```
 
-### 积分预算管理
+### Task Monitoring
 
 ```
-我想创建5个课程任务，请先帮我：
-1. 查询当前积分余额
-2. 查询课程任务的单价
-3. 确认是否有足够积分
-4. 如果足够，批量创建这5个任务
+Please continuously monitor my task list and notify me when tasks complete
 ```
 
-## 故障排查
-
-### 任务失败
-
-如果任务状态显示 `failed`，可以：
-```
-请获取任务 <taskId> 的详细信息，开启 verbose 模式，看看失败原因
-```
-
-### 积分不足
+### Credit Budget Management
 
 ```
-我的任务创建失败了，提示积分不足，请帮我：
-1. 查看当前余额
-2. 查看消耗明细
-3. 告诉我还需要充值多少积分
+I want to create 5 course tasks, please help me first:
+1. Query current credit balance
+2. Query course task pricing
+3. Confirm if there are enough credits
+4. If sufficient, batch create these 5 tasks
 ```
 
-### API Key 问题
+## Troubleshooting
 
-如果遇到认证错误，请检查：
-1. API Key 是否正确设置
-2. API Key 是否过期
-3. API Key 是否有足够的权限
+### Task Failed
 
-## 更多帮助
+If task status shows `failed`, you can:
+```
+Please get detailed information for task <taskId> with verbose mode enabled to see the failure reason
+```
 
-- 访问 [knowfun.io](https://knowfun.io) 查看详细文档
-- 进入 `/api-platform` 页面管理您的 API Key
-- 查看积分充值和套餐选项
+### Insufficient Credits
+
+```
+My task creation failed with insufficient credits, please help me:
+1. View current balance
+2. View usage details
+3. Tell me how many more credits I need to recharge
+```
+
+### API Key Issues
+
+If you encounter authentication errors, check:
+1. Is API Key correct
+2. Is API Key expired
+3. Does API Key have sufficient permissions
+
+## More Help
+
+- Visit [knowfun.io](https://knowfun.io) for detailed documentation
+- Go to `/api-platform` page to manage your API Keys
+- View credit recharge and package options

@@ -1,179 +1,185 @@
-# Knowfun MCP 项目结构
+# Knowfun MCP Project Structure
 
-## 📁 文件说明
+[中文](./PROJECT_STRUCTURE.zh.md) | English
 
-### 核心文件
+## 📁 File Descriptions
 
-| 文件 | 说明 |
-|------|------|
-| `src/index.ts` | MCP Server 主程序（TypeScript 源码） |
-| `dist/index.js` | 编译后的 JavaScript 代码（由 TypeScript 生成） |
-| `package.json` | Node.js 项目配置文件 |
-| `tsconfig.json` | TypeScript 编译配置 |
+### Core Files
 
-### 配置文件
+| File | Description |
+|------|-------------|
+| `src/index.ts` | MCP Server main program (TypeScript source) |
+| `dist/index.js` | Compiled JavaScript code (generated from TypeScript) |
+| `package.json` | Node.js project configuration |
+| `tsconfig.json` | TypeScript compilation configuration |
 
-| 文件 | 说明 |
-|------|------|
-| `.env.example` | 环境变量模板（需复制为 `.env` 并填入真实配置） |
-| `.env` | 实际环境变量文件（包含 API Key，不会提交到 Git） |
-| `.gitignore` | Git 忽略规则 |
-| `claude_desktop_config.example.json` | Claude Desktop 配置示例 |
+### Configuration Files
 
-### 文档文件
+| File | Description |
+|------|-------------|
+| `.env.example` | Environment variable template (copy to `.env` and fill in real values) |
+| `.env` | Actual environment variables file (contains API Key, not committed to Git) |
+| `.gitignore` | Git ignore rules |
+| `claude_desktop_config.example.json` | Claude Desktop configuration example |
 
-| 文件 | 说明 | 推荐阅读顺序 |
-|------|------|-------------|
-| `README.md` | 项目说明文档 | ⭐ 1️⃣ 首先阅读 |
-| `QUICKSTART.md` | 5分钟快速入门指南 | ⭐ 2️⃣ 快速上手 |
-| `USAGE_EXAMPLES.md` | 详细使用示例和场景 | 3️⃣ 深入学习 |
-| `PROJECT_STRUCTURE.md` | 项目结构说明（本文件） | 4️⃣ 了解结构 |
+### Documentation Files
 
-### 工具脚本
+| File | Description | Recommended Reading Order |
+|------|-------------|---------------------------|
+| `README.md` / `README.zh.md` | Main project documentation (English/Chinese) | ⭐ 1️⃣ Read First |
+| `QUICKSTART.md` / `QUICKSTART.zh.md` | 5-minute quick start guide (English/Chinese) | ⭐ 2️⃣ Quick Start |
+| `USAGE_EXAMPLES.md` / `USAGE_EXAMPLES.zh.md` | Detailed usage examples and scenarios (English/Chinese) | 3️⃣ Deep Dive |
+| `PROJECT_STRUCTURE.md` / `PROJECT_STRUCTURE.zh.md` | Project structure documentation (English/Chinese, this file) | 4️⃣ Understanding Structure |
 
-| 文件 | 说明 | 使用方法 |
-|------|------|---------|
-| `test-connection.js` | API 连接测试脚本 | `npm test` |
+### Tool Scripts
 
-## 🗂️ 目录结构
+| File | Description | Usage |
+|------|-------------|-------|
+| `test-connection.js` | API connection test script | `npm test` |
+
+## 🗂️ Directory Structure
 
 ```
 knowfun-mcp/
-├── src/                          # TypeScript 源代码
-│   └── index.ts                  # MCP Server 主程序
+├── src/                          # TypeScript source code
+│   └── index.ts                  # MCP Server main program
 │
-├── dist/                         # 编译输出目录
-│   ├── index.js                  # 编译后的主程序
-│   └── index.d.ts                # TypeScript 类型定义
+├── dist/                         # Build output directory
+│   ├── index.js                  # Compiled main program
+│   └── index.d.ts                # TypeScript type definitions
 │
-├── node_modules/                 # NPM 依赖包（自动生成）
+├── node_modules/                 # NPM dependencies (auto-generated)
 │
-├── .env.example                  # 环境变量模板
-├── .gitignore                    # Git 忽略配置
-├── package.json                  # 项目配置
-├── package-lock.json             # 依赖锁定文件
-├── tsconfig.json                 # TypeScript 配置
-├── test-connection.js            # 连接测试脚本
-├── claude_desktop_config.example.json  # Claude Desktop 配置示例
+├── .env.example                  # Environment variable template
+├── .gitignore                    # Git ignore configuration
+├── package.json                  # Project configuration
+├── package-lock.json             # Dependency lock file
+├── tsconfig.json                 # TypeScript configuration
+├── test-connection.js            # Connection test script
+├── claude_desktop_config.example.json  # Claude Desktop config example
 │
-├── README.md                     # 主文档
-├── QUICKSTART.md                 # 快速入门
-├── USAGE_EXAMPLES.md             # 使用示例
-└── PROJECT_STRUCTURE.md          # 本文件
+├── README.md                     # Main documentation (English)
+├── README.zh.md                  # Main documentation (Chinese)
+├── QUICKSTART.md                 # Quick start guide (English)
+├── QUICKSTART.zh.md              # Quick start guide (Chinese)
+├── USAGE_EXAMPLES.md             # Usage examples (English)
+├── USAGE_EXAMPLES.zh.md          # Usage examples (Chinese)
+├── PROJECT_STRUCTURE.md          # Project structure (English, this file)
+└── PROJECT_STRUCTURE.zh.md       # Project structure (Chinese)
 ```
 
-## 🔧 主要技术组件
+## 🔧 Main Technical Components
 
-### 依赖包
+### Dependencies
 
-#### 生产依赖
-- `@modelcontextprotocol/sdk`: MCP 协议 SDK
-- `axios`: HTTP 客户端（用于调用 Knowfun API）
-- `dotenv`: 环境变量管理
+#### Production Dependencies
+- `@modelcontextprotocol/sdk`: MCP protocol SDK
+- `axios`: HTTP client (for calling Knowfun API)
+- `dotenv`: Environment variable management
 
-#### 开发依赖
-- `typescript`: TypeScript 编译器
-- `@types/node`: Node.js 类型定义
+#### Development Dependencies
+- `typescript`: TypeScript compiler
+- `@types/node`: Node.js type definitions
 
-## 🚀 工作流程
+## 🚀 Workflow
 
-### 开发流程
-1. 编辑 `src/index.ts` 源代码
-2. 运行 `npm run build` 编译
-3. 使用 `npm test` 测试连接
-4. 在 Claude Desktop 中验证功能
+### Development Flow
+1. Edit `src/index.ts` source code
+2. Run `npm run build` to compile
+3. Use `npm test` to test connection
+4. Verify functionality in Claude Desktop
 
-### 监听模式（开发时推荐）
+### Watch Mode (Recommended for Development)
 ```bash
-# 终端 1：监听文件变化并自动编译
+# Terminal 1: Watch file changes and auto-compile
 npm run watch
 
-# 终端 2：修改代码后重启 Claude Desktop 测试
+# Terminal 2: After code changes, restart Claude Desktop to test
 ```
 
-## 📦 构建产物
+## 📦 Build Artifacts
 
-运行 `npm run build` 后，会在 `dist/` 目录生成：
-- `index.js` - 可执行的 JavaScript 文件
-- `index.d.ts` - TypeScript 类型声明文件
+After running `npm run build`, the following will be generated in the `dist/` directory:
+- `index.js` - Executable JavaScript file
+- `index.d.ts` - TypeScript type declaration file
 
-## 🔑 环境变量
+## 🔑 Environment Variables
 
-| 变量名 | 说明 | 必需 | 默认值 |
-|--------|------|------|--------|
-| `KNOWFUN_API_KEY` | Knowfun API Key | ✅ 是 | 无 |
-| `KNOWFUN_API_BASE_URL` | API 基础 URL | ❌ 否 | `https://api.knowfun.io` |
+| Variable | Description | Required | Default Value |
+|----------|-------------|----------|---------------|
+| `KNOWFUN_API_KEY` | Knowfun API Key | ✅ Yes | None |
+| `KNOWFUN_API_BASE_URL` | API base URL | ❌ No | `https://api.knowfun.io` |
 
-## 🛠️ NPM 脚本
+## 🛠️ NPM Scripts
 
-| 命令 | 说明 |
-|------|------|
-| `npm install` | 安装依赖 |
-| `npm run build` | 编译 TypeScript |
-| `npm run watch` | 监听文件变化并自动编译 |
-| `npm start` | 直接运行（需先编译） |
-| `npm run dev` | 编译并运行 |
-| `npm test` | 测试 API 连接 |
+| Command | Description |
+|---------|-------------|
+| `npm install` | Install dependencies |
+| `npm run build` | Compile TypeScript |
+| `npm run watch` | Watch file changes and auto-compile |
+| `npm start` | Run directly (must compile first) |
+| `npm run dev` | Compile and run |
+| `npm test` | Test API connection |
 
-## 🔍 代码架构
+## 🔍 Code Architecture
 
-### KnowfunClient 类
-封装所有 Knowfun API 调用：
-- `createTask()` - 创建任务
-- `getTask()` - 查询任务状态
-- `getTaskDetail()` - 获取任务详情
-- `listTasks()` - 获取任务列表
-- `getCreditsBalance()` - 查询积分
-- `getCreditsPricing()` - 查询定价
-- `getSchema()` - 获取配置 Schema
-- `getUsage()` - 查询使用明细
+### KnowfunClient Class
+Encapsulates all Knowfun API calls:
+- `createTask()` - Create task
+- `getTask()` - Query task status
+- `getTaskDetail()` - Get task details
+- `listTasks()` - Get task list
+- `getCreditsBalance()` - Query credits
+- `getCreditsPricing()` - Query pricing
+- `getSchema()` - Get configuration schema
+- `getUsage()` - Query usage details
 
-### MCP Server 设置
-1. **ListToolsRequestSchema Handler** - 注册所有可用工具
-2. **CallToolRequestSchema Handler** - 处理工具调用
-3. **StdioServerTransport** - 使用标准输入输出通信
+### MCP Server Setup
+1. **ListToolsRequestSchema Handler** - Register all available tools
+2. **CallToolRequestSchema Handler** - Handle tool calls
+3. **StdioServerTransport** - Use standard input/output communication
 
-## 🔗 MCP 工具列表
+## 🔗 MCP Tools List
 
-| 工具名称 | 对应 API | 说明 |
-|---------|---------|------|
-| `create_task` | POST /openapi/v1/tasks | 创建生成任务 |
-| `get_task` | GET /openapi/v1/tasks/:taskId | 查询任务状态 |
-| `get_task_by_request_id` | GET /openapi/v1/tasks/by-request/:requestId | 按 requestId 查询 |
-| `get_task_detail` | GET /openapi/v1/tasks/:taskId/detail | 获取详细结果 |
-| `list_tasks` | GET /openapi/v1/tasks | 获取任务列表 |
-| `get_credits_balance` | GET /openapi/v1/credits/balance | 查询积分余额 |
-| `get_credits_pricing` | GET /openapi/v1/credits/pricing | 获取定价信息 |
-| `get_schema` | GET /openapi/v1/schema | 获取配置 Schema |
-| `get_usage` | GET /openapi/usage | 查询消耗明细 |
+| Tool Name | Corresponding API | Description |
+|-----------|-------------------|-------------|
+| `create_task` | POST /openapi/v1/tasks | Create generation task |
+| `get_task` | GET /openapi/v1/tasks/:taskId | Query task status |
+| `get_task_by_request_id` | GET /openapi/v1/tasks/by-request/:requestId | Query by requestId |
+| `get_task_detail` | GET /openapi/v1/tasks/:taskId/detail | Get detailed results |
+| `list_tasks` | GET /openapi/v1/tasks | Get task list |
+| `get_credits_balance` | GET /openapi/v1/credits/balance | Query credit balance |
+| `get_credits_pricing` | GET /openapi/v1/credits/pricing | Get pricing information |
+| `get_schema` | GET /openapi/v1/schema | Get configuration schema |
+| `get_usage` | GET /openapi/usage | Query usage details |
 
-## 📝 修改建议
+## 📝 Modification Suggestions
 
-### 添加新工具
-1. 在 `KnowfunClient` 类中添加新方法
-2. 在 `ListToolsRequestSchema` handler 中注册工具
-3. 在 `CallToolRequestSchema` handler 中添加处理逻辑
-4. 重新编译：`npm run build`
+### Adding New Tools
+1. Add new method in `KnowfunClient` class
+2. Register tool in `ListToolsRequestSchema` handler
+3. Add processing logic in `CallToolRequestSchema` handler
+4. Recompile: `npm run build`
 
-### 修改 API 端点
-编辑 `.env` 文件中的 `KNOWFUN_API_BASE_URL`
+### Modifying API Endpoint
+Edit `KNOWFUN_API_BASE_URL` in `.env` file
 
-### 调试技巧
-- 查看 Claude Desktop 日志（macOS: `~/Library/Logs/Claude/`)
-- 使用 `console.error()` 输出调试信息到 stderr
-- 运行 `npm test` 验证 API 连接
+### Debugging Tips
+- Check Claude Desktop logs (macOS: `~/Library/Logs/Claude/`)
+- Use `console.error()` to output debug info to stderr
+- Run `npm test` to verify API connection
 
-## 🎯 下一步开发建议
+## 🎯 Future Development Suggestions
 
-1. **错误处理增强**：添加更详细的错误信息和重试逻辑
-2. **缓存机制**：缓存 Schema 和定价信息，减少 API 调用
-3. **Webhook 支持**：实现任务完成通知机制
-4. **批量操作**：支持批量创建和查询任务
-5. **资源管理**：实现资源（视频、图片）的下载和管理功能
+1. **Enhanced Error Handling**: Add more detailed error messages and retry logic
+2. **Caching Mechanism**: Cache schema and pricing info to reduce API calls
+3. **Webhook Support**: Implement task completion notification mechanism
+4. **Batch Operations**: Support batch creation and querying of tasks
+5. **Resource Management**: Implement download and management of resources (videos, images)
 
-## 📚 相关资源
+## 📚 Related Resources
 
-- [MCP 官方文档](https://modelcontextprotocol.io/)
-- [Knowfun API 文档](https://knowfun.io/api-platform)
-- [TypeScript 文档](https://www.typescriptlang.org/)
-- [Axios 文档](https://axios-http.com/)
+- [MCP Official Documentation](https://modelcontextprotocol.io/)
+- [Knowfun API Documentation](https://knowfun.io/api-platform)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
+- [Axios Documentation](https://axios-http.com/)
