@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "knowfun": {
+      "command": "node",
+      "args": ["/Users/jamson/code/knowfun-mcp/dist/index.js"],
+      "env": {
+        "KNOWFUN_API_KEY": "kf_your_api_key_here",
+        "KNOWFUN_API_BASE_URL": "https://api.knowfun.io"
+      }
+    }
+  }
+}

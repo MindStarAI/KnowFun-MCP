@@ -1,0 +1,57 @@
+# Development files
+src/
+tsconfig.json
+test-connection.js
+*.log
+
+# Documentation (keep README.md and LICENSE)
+REPOSITORY_REVIEW.md
+SETUP_SUMMARY.md
+DOCS_INDEX.md
+PROJECT_STRUCTURE.md
+CONFIGURATION.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+CHANGELOG.md
+QUICKSTART.md
+QUICKSTART.en.md
+USAGE_EXAMPLES.md
+USAGE_EXAMPLES.en.md
+
+# Configuration examples
+*.example.json
+.env.example
+
+# GitHub files
+.github/
+
+# IDE and system files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.travis.yml
+.circleci/
+.gitlab-ci.yml
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Build artifacts
+*.tgz
+
+# Claude files
+.claude/

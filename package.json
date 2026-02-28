@@ -1,0 +1,60 @@
+{
+  "name": "knowfun-mcp",
+  "version": "1.0.1",
+  "description": "MCP server for Knowfun.io OpenAPI - Generate courses, posters, games, and films using AI",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "knowfun-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "test": "node test-connection.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "knowfun",
+    "openapi",
+    "ai",
+    "content-generation",
+    "course-generation",
+    "poster-generation",
+    "game-generation",
+    "claude",
+    "cursor",
+    "typescript"
+  ],
+  "author": "Knowfun.io <support@knowfun.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knowfun/knowfun-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knowfun/knowfun-mcp/issues"
+  },
+  "homepage": "https://github.com/knowfun/knowfun-mcp#readme",
+  "files": [
+    "dist/",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/config.json",
+  "mcpServers": {
+    "knowfun": {
+      "command": "node",
+      "args": ["/Users/jamson/code/knowfun-mcp/dist/index.js"],
+      "env": {
+        "KNOWFUN_API_KEY": "kf_your_api_key_here",
+        "KNOWFUN_API_BASE_URL": "https://api.knowfun.io"
+      },
+      "metadata": {
+        "description": "Knowfun content generation MCP server - create courses, posters, games, and films",
+        "homepage": "https://knowfun.io",
+        "version": "1.0.0"
+      }
+    }
+  }
+}
