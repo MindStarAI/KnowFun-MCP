@@ -6,3 +6,5 @@ dist/
 
 # Local MCP configurations with API keys
 .cursor/mcp_config.json
+
+*.tgz

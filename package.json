@@ -33,12 +33,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/knowfun/knowfun-mcp.git"
+    "url": "https://github.com/MindStarAI/KnowFun-MCP.git"
   },
   "bugs": {
-    "url": "https://github.com/knowfun/knowfun-mcp/issues"
+    "url": "https://github.com/MindStarAI/KnowFun-MCP/issues"
   },
-  "homepage": "https://github.com/knowfun/knowfun-mcp#readme",
+  "homepage": "https://github.com/MindStarAI/KnowFun-MCP#readme",
   "files": [
     "dist/",
     "README.md",
